@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#c6b38c">
+<meta name="description" content="走入清明上河图的虹桥街市，在绢色、墨线和市井声中第一视角漫游。">
+<title>入画 · 清明上河图</title>
+<link rel="stylesheet" href="style.css?v=20261019r6">
+</head>
+<body>
+<div id="scene" aria-label="清明上河图第一视角漫游场景"></div>
+<div class="paper-grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<div id="loading"><span class="loading-seal">入画</span><p>铺绢 · 调墨 · 候一城烟火</p><div class="loading-track"><i id="loading-bar"></i></div><small id="loading-status">正在展开画卷</small></div>
+
+<header id="masthead">
+  <a href="#" id="home" aria-label="返回入画首页"><span class="seal">入<br>画</span><span class="brand">清明上河图<small>汴河 · 虹桥一段</small></span></a>
+  <div class="top-actions"><button id="map-toggle" title="展开或收起游览图" aria-expanded="false">游览图 <span>舆</span></button><button id="sound-toggle" aria-pressed="false" title="开启环境音">声音 <span id="sound-icon">○</span></button><button id="reference-toggle" title="查看原画对照">原画 <span>卷</span></button><button id="help-toggle" title="操作说明">操作 <span>?</span></button></div>
+</header>
+
+<section id="welcome" aria-labelledby="title">
+  <p class="overline">北宋风物 · 春日手绘画境</p>
+  <h1 id="title">循汴河，<br>入画中<span>。</span></h1>
+  <p class="intro">桥上是往来，桥下是行舟。<br>沿一段河岸，走近千年前的寻常一日。</p>
+  <div class="entry-actions"><button id="enter" class="primary">入画漫游 <span>→</span></button><button id="tour" class="secondary">循卷游览</button></div>
+  <p class="entry-hint desktop-hint"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> 行走 <i></i> 拖动画面环顾</p>
+  <p class="entry-hint mobile-hint">左下方向盘行走 · 右侧拖动环顾</p>
+  <p class="edition">壹 · 虹桥街市<span>风过柳梢 · 一城烟火</span></p>
+</section>
+
+<aside id="map-panel" class="paper-panel" hidden>
+  <div class="panel-heading"><h2>虹桥一段</h2><button id="map-close" aria-label="关闭游览图">×</button></div>
+  <p>择一处落脚，再沿街慢行。</p>
+  <svg id="map" viewBox="0 0 270 236" role="group" aria-label="河岸、虹桥、茶肆与船埠的位置图">
+    <path class="map-river" d="M0 81 Q70 87 135 97 T270 111 L270 154 Q202 149 135 139 T0 124Z"/>
+    <path class="map-bank" d="M0 76 Q70 82 135 92 T270 106 M0 129 Q70 134 135 144 T270 159"/>
+    <path class="map-bridge" d="M135 89 Q139 118 135 147"/>
+    <path class="map-street" d="M20 157 Q78 155 122 165 T250 187 M21 54 Q80 74 135 75 T246 90"/>
+    <g class="map-houses"><path d="M28 141l22 3-2 13-22-3Z M61 146l23 3-2 13-23-3Z M158 145l22 3-2 13-22-3Z M200 156l24 3-2 13-24-3Z M30 173l24 3-2 18-24-3Z M66 180l23 3-2 18-23-3Z M157 184l23 3-2 18-23-3Z M202 190l22 3-2 18-22-3Z M65 45l23 4-3 18-23-4Z M99 50l23 5-3 18-23-5Z M159 60l23 5-3 18-23-5Z"/></g>
+    <text x="218" y="135" class="river-label">汴河</text>
+    <g class="map-point" data-place="south" tabindex="0" role="button" aria-label="前往南岸街市"><rect x="82" y="151" width="62" height="54" fill="transparent"/><circle cx="122" cy="165" r="5"/><text x="90" y="201">南岸街市</text></g>
+    <g class="map-point" data-place="bridge" tabindex="0" role="button" aria-label="前往虹桥"><rect x="123" y="99" width="63" height="32" fill="transparent"/><circle cx="135" cy="115" r="5"/><text x="150" y="114">虹桥</text></g>
+    <g class="map-point" data-place="tea" tabindex="0" role="button" aria-label="前往茶肆"><rect x="166" y="154" width="52" height="32" fill="transparent"/><circle cx="176" cy="166" r="5"/><text x="188" y="181">茶肆</text></g>
+    <g class="map-point" data-place="quay" tabindex="0" role="button" aria-label="前往船埠"><rect x="50" y="116" width="54" height="30" fill="transparent"/><circle cx="94" cy="138" r="5"/><text x="55" y="130">船埠</text></g>
+    <path style="pointer-events:none" id="map-you" d="M0 -6 L4 5 L0 3 L-4 5Z" transform="translate(122,165)"/>
+  </svg>
+  <p class="map-foot">此图供行走定位，非原画测绘。</p>
+</aside>
+
+<div id="crosshair" hidden aria-hidden="true"><i></i></div>
+<div id="interaction" hidden><span id="interaction-label"></span><button id="inspect"><kbd>E</kbd> 端详</button></div>
+<div id="walk-hud" hidden><div class="location"><span class="location-dot"></span><span id="location-name">南岸街市</span><small id="location-detail">汴河在前，虹桥在望</small></div><div class="walk-actions"><button id="tour-stop" hidden>停止游览</button><button id="seat-stand" hidden>起身</button><button id="capture">留影</button><button id="pause">歇一歇 <kbd>Esc</kbd></button></div></div>
+<div id="touch-controls" hidden><div id="joystick" aria-label="拖动方向盘行走"><div id="stick"></div></div><span>右侧拖动环顾</span></div>
+
+<dialog id="detail-dialog" class="paper-dialog">
+  <button class="dialog-close" id="detail-close" aria-label="关闭详情">×</button><p class="overline" id="detail-number">画中细处 · 壹</p><h2 id="detail-title"></h2><p id="detail-text"></p><div class="detail-rule"></div><p class="detail-note" id="detail-note"></p><button id="detail-seat" class="text-button" hidden>在檐下坐一会 →</button><br id="detail-seat-break" hidden><button id="detail-reference" class="text-button detail-reference">看看原画中的这一处 ↗</button><br><button id="detail-return" class="text-button">回到街上 →</button>
+</dialog>
+<dialog id="help-dialog" class="paper-dialog help-dialog">
+  <button class="dialog-close" id="help-close" aria-label="关闭操作说明">×</button><p class="overline">慢慢走，不必赶路</p><h2>在画中行走</h2>
+  <dl><div><dt><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></dt><dd>前后左右行走</dd></div><div><dt>拖动画面</dt><dd>环顾四周</dd></div><div><dt><kbd>←</kbd><kbd>→</kbd></dt><dd>向左、向右转身</dd></div><div><dt><kbd>Shift</kbd></dt><dd>稍快一些</dd></div><div><dt><kbd>E</kbd></dt><dd>端详附近的人与物</dd></div><div><dt><kbd>Esc</kbd></dt><dd>暂停，或关闭当前窗口</dd></div></dl>
+  <p class="help-mobile">触屏：左下方向盘行走，在画面右侧拖动环顾。</p>
+  <details><summary>关于这幅画境</summary><p>依据故宫博物院藏北宋张择端《清明上河图》的虹桥、舟楫与街市细节进行空间重构。画作采用散点透视，不能直接转换为唯一的三维空间；背面、尺度及通行路线含创作补足。</p><p>以张择端本的木桥与市井形制为根基，融入温暖手绘动画的光色、春叶与细腻生活。春日设色、人物动作及环境声均为此次漫游的艺术创作。</p><a href="sources.html" target="_blank" rel="noopener">查看参考与重构说明 ↗</a></details>
+</dialog>
+<dialog id="reference-dialog" class="paper-dialog reference-dialog" aria-labelledby="reference-title">
+  <button class="dialog-close" id="reference-close" aria-label="关闭原画对照">×</button>
+  <div class="reference-heading"><div><p class="overline">故宫博物院藏 · 北宋张择端本</p><h2 id="reference-title">从长卷里来</h2></div><a href="sources.html" target="_blank" rel="noopener">参考与重构说明 ↗</a></div>
+  <div class="reference-tabs" role="group" aria-label="选择原画细部"><button data-reference="overview" aria-pressed="true">虹桥一段</button><button data-reference="bridge" aria-pressed="false">桥的木作</button><button data-reference="boat" aria-pressed="false">舟楫与船工</button><button data-reference="street" aria-pressed="false">街市与人物</button></div>
+  <div class="reference-window" tabindex="0" aria-label="原画细部，可滚动查看"><img id="reference-image" src="assets/reference.jpg" alt="张择端清明上河图原画中的虹桥、往来人群与汴河舟船" width="1600" height="800"></div>
+  <div class="reference-controls"><label>放大细看 <input id="reference-zoom" type="range" min="1" max="3" step=".25" value="1" aria-label="原画放大倍数"><output id="reference-zoom-value">1×</output></label><span>放大后可横向、纵向滚动画面</span></div>
+  <p id="reference-caption">原画采用散点透视；画境保留虹桥、舟船和桥市的关系，将这一段重构为连续的步行空间。</p>
+  <p class="reference-source">公共领域画作的扫描细部，来自 Wikimedia Commons。扫描的亮度与色彩经过发布者调整，不作为原作精确色样。</p>
+</dialog>
+<div id="error" hidden role="alert"><h2>画境暂未展开</h2><p id="error-message">请使用支持 WebGL 2 的现代浏览器。</p><button onclick="location.reload()">重新展开</button></div>
+<div id="announcer" role="status" aria-live="polite" class="sr-only"></div>
+<script type="module" src="main.js?v=20261019r14"></script>
+</body>
+</html>

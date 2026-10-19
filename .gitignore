@@ -1,0 +1,13 @@
+.DS_Store
+node_modules/
+**/.venv/
+.site-artifacts/
+*.tgz
+*.tar.gz
+# Full-resolution public references and local visual studies remain in the workspace.
+/research/*.jpg
+/research/*.png
+# Local deployment receipts are updated after source publication.
+/research/publication-log.txt
+
+/tools/refine-*.py

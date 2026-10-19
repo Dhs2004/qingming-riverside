@@ -1,0 +1,11 @@
+{
+  "name": "qingming-riverside-walk",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "python3 -m http.server 18742 --bind 127.0.0.1 --directory dist",
+    "check": "node --check dist/animals.js && node --check dist/artisan.js && node --check dist/atelier.js && node --check dist/atmosphere.js && node --check dist/boat-craft.js && node --check dist/bridge-craft.js && node --check dist/cloth-craft.js && node --check dist/crowd-life.js && node --check dist/crowd-paths.js && node --check dist/crowd-shadows.js && node --check dist/distant-wash.js && node --check dist/earth.js && node --check dist/garden.js && node --check dist/ink.js && node --check dist/lantern-craft.js && node --check dist/main.js && node --check dist/market-goods.js && node --check dist/people.js && node --check dist/room-light.js && node --check dist/snack-craft.js && node --check dist/tableaux.js && node --check dist/tea-craft.js && node --check dist/townsfolk.js && node --check dist/wagon-craft.js && node --check dist/world.js",
+    "check:world": "node tools/check-world.mjs"
+  }
+}
